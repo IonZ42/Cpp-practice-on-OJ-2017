@@ -1,0 +1,389 @@
+¡¾A¡¿
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	double a[50], b[50],c[50];
+	double t;
+	int n;
+	cin >> n;
+	for (int j = 0; j < n; j++)
+	{
+		cin >> a[j];
+	}
+	for (int j = 0; j < n; j++)
+	{
+		b[j] = a[j];
+	}
+	for (int j = n - 2; j >= 0; j--)
+		{
+			for (int k =j; k <n; k++)
+			{
+				if (a[k+1] > a[k])
+				{
+					t = a[k];
+					a[k] = a[k + 1];
+					a[k + 1] = t;
+				}
+			}
+		}
+	for (int j = 0; j < n; j++)
+	{
+		for (int r = 0; r < n;r++)
+		{
+			if (a[j] == b[r])
+			{
+				c[j] = r;
+				b[r] = -2;
+				break;
+			}
+		}
+	}
+	for (int j = 0; j < n; j++)
+	{
+		cout << a[j] << "<" << c[j] <<">"<< endl;
+	}
+
+	return 0;
+}
+
+¡¾B¡¿
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+	double a[50];
+	double t;
+	int n;
+	cin >> n;
+	for (int j = 0; j < n;j++)
+	{
+		cin >> a[j];
+	}
+	for (int i = 1; i < 2; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			for (int k = n-2; k >=j; k--)
+			{
+				if (a[k] > a[k + 1])
+				{
+					t = a[k];
+					a[k] = a[k + 1];
+					a[k + 1] = t;
+				}
+			}
+		}
+	}
+	for (int j = 0; j < n;j++)
+	{
+		cout << a[j]<<" ";
+	}
+	return 0;
+}
+
+¡¾C¡¿
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+	double a[50];
+	double t=0,x=0;
+	int n;
+	cin >> n;
+	for (int j = 0; j < n;j++)
+	{
+		cin >> a[j];
+	}
+	for (int j = 0; j < n; j++)
+		{
+			x += a[j];
+		}
+	x /= n;
+	for (int j = 0; j < n; j++)
+	{
+		if (a[j] >= x)
+		{
+			t++;
+		}
+	}
+	cout <<t;
+	return 0;
+}
+
+¡¾D¡¿
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int m, n;
+	double b[100];
+	cin >> m >> n;
+	for (int r = 0; r <m+n; r++)
+	{
+		cin >> b[r];
+	}
+	double t;
+	for (int j = 0; j < m + n; j++)
+	{
+		for (int k = m+n-1; k >j;k--)
+		{
+			if (b[k] < b[k - 1])
+			{
+				t = b[k-1];
+				b[k - 1] = b[k];
+				b[k] = t;
+			}
+		}
+	}
+	for (int j = 0; j < n + m;j++)
+	{
+		cout << b[j];
+		if (j!=n + m) { cout << " "; }
+	}
+
+	return 0;
+}
+
+¡¾E¡¿£¨run error£©
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	char a;
+	char x[100];
+	int r = 0;
+	do
+	{
+		cin >>a;
+		if (a != '\n') 
+		{
+			x[r] = a;
+			r++;
+		}
+	} while (a != '\n');
+	int c = 0;
+	for (int j = 0; j < r;j++)
+	{
+		if (x[j] == x[r - j-1])
+			c++;
+	}
+	if (c==r) { cout << "Ture"; }
+	else cout << "False";
+	return 0;
+}
+
+¡¾F¡¿
+#include <iostream>
+using namespace std;
+int c(int m, int n);
+int c(int m, int n)
+{
+	unsigned long long int a = 1, b = 1, c = 1;
+	for (int k = 1; k <= n; k++)
+	{
+		a *= k;
+	}
+	for (int k = 1; k <= m; k++)
+	{
+		b *= k;
+	}
+	for (int k = 1; k <= n - m; k++)
+	{
+		c *= k;
+	}
+	return a / (b*c);
+}
+int main()
+{
+	int n;
+	cin >> n;
+	for (int r = 1; r <= n; r++)
+	{
+		for (int j = 0; j < r; j++)
+		{
+			cout << c(j, r - 1);
+			if (j < r - 1) { cout << " "; }
+		}
+		cout << "\n";
+	}
+
+	return 0;
+}
+
+¡¾G¡¿
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	double a[3][5] = {}, c[5][3] = {}, b[3][3] = {};
+	for (int r = 0; r <= 2; r++)
+	{
+		for (int j = 0; j <= 4; j++)
+		{
+			cin >> a[r][j];
+			c[j][r] = a[r][j];
+		}
+	}
+	for (int r = 0; r <= 2; r++)
+	{
+		for (int j = 0; j <= 2; j++)
+		{
+			for (int k = 0; k <= 4; k++)
+			{
+				b[r][j] += a[r][k] * c[k][j];
+			}
+		}
+	}
+	for (int r = 0; r <= 2; r++)
+	{
+		for (int j = 0; j <= 2; j++)
+		{
+			if (j < 2) { cout << b[r][j] << " "; }
+			else cout << b[r][j];
+		}
+		cout << endl;
+	}
+	return 0;
+}
+
+¡¾H¡¿
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int m, p, n;
+	double a[50][50] = {}, c[50][50] = {}, b[50][50] = {};
+	cin >> m >> p >> n;
+	for (int r = 0; r <m; r++)
+	{
+		for (int j = 0; j < p; j++)
+		{
+			cin >> a[r][j];
+		}
+	}
+	for (int r = 0; r <p; r++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			cin >> c[r][j];
+		}
+	}
+	for (int r = 0; r <m; r++)
+	{
+		for (int j = 0; j <n; j++)
+		{
+			for (int k = 0; k <p; k++)
+			{
+				b[r][j] += a[r][k] * c[k][j];
+			}
+		}
+	}
+	for (int r = 0; r <m; r++)
+	{
+		for (int j = 0; j <n; j++)
+		{
+			cout << b[r][j];
+			if (j < n - 1) { cout << " "; }
+		}
+		cout << endl;
+	}
+	return 0;
+}
+
+¡¾I¡¿
+#include <iostream>
+
+using namespace std;
+
+
+void reverse()
+
+{
+	char a;
+
+	cin >> a;
+
+	if (a == '#')
+
+	{
+		return;
+	}
+
+	reverse();
+
+	cout << a;
+}
+
+int main()
+
+{
+	reverse();
+
+	return 0;
+}
+
+¡¾J¡¿£¨blank£©
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a;
+	bool n[50];
+	int t=0;
+	do 
+	{
+		cin >> a;
+		char x[2][50];
+		for (int j = 0; j < 2;j++)
+		{
+			for (int k =0 ; k < a;k++)
+			{
+				cin >> x[j][k];
+			}
+		}
+		bool y[50][50],z[50][50];
+		for (int j = 0; j < a;j++)
+		{
+			for (int k = 0; k < a; k++)
+			{
+				if (x[0][j] == x[0][k])
+					y[j][k] = 1;
+				else y[j][k] = 0;
+				if (x[1][j] == x[1][k])
+					z[j][k] = 1;
+				else z[j][k] = 0;
+			}
+		}
+		int c = 0;
+		for (int j = 0; j < a; j++)
+		{
+			for (int k = 0; k < a; k++)
+			{
+				if (y[j][k] == z[j][k])
+					c++;
+			}
+		}
+		if (c == a*a)
+		{
+			n[t] = 1; t++;
+		}
+		else n[t] = 0; t++;
+		cout << "M";
+	} while (a != 0);
+	for (int j = 0; j < t;j++)
+		if (n[j] == 1) { cout << "YES" << endl; }
+		else { cout << "NO" << endl; }
+	system("pause");
+	return 0;
+}
+
+¡¾K¡¿£¨blank£©
